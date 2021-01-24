@@ -32,10 +32,10 @@ function playRound(playerSelection) {
         document.getElementById("jsText").innerHTML = (`You tied.<hr>Wins: ${playerWins}<br>Losses: ${computerWins}`);
     }
     else if (playerSelection == "rock" && computerSelection == "paper" || playerSelection == "paper" && computerSelection == "scissors" || playerSelection == "scissors" && computerSelection == "rock") {
-        document.getElementById("jsText").innerHTML = (`You lose ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`);
+        document.getElementById("jsText").innerHTML = (`You lose, ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`);
     }
     else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
-        document.getElementById("jsText").innerHTML = (`You win ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`);
+        document.getElementById("jsText").innerHTML = (`You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`);
     }
     computerSelectionHighlight();
     winnerCheck();
