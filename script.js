@@ -2,23 +2,9 @@ let totalGames = 0;
 let playerWins = 0;
 let computerWins = 0;
 
-document.getElementById("rock").onclick = function() {
-    playRound("rock");
-    document.getElementById("rock").style.backgroundColor= "#028090";
-    document.getElementById("paper").style.backgroundColor= "#00a896";
-    document.getElementById("scissors").style.backgroundColor= "#00a896";}
-
-document.getElementById("paper").onclick = function() {
-    playRound("paper");
-    document.getElementById("rock").style.backgroundColor= "#00a896";
-    document.getElementById("paper").style.backgroundColor= "#028090";
-    document.getElementById("scissors").style.backgroundColor= "#00a896";}
-
-document.getElementById("scissors").onclick = function() {
-    playRound("scissors");
-    document.getElementById("rock").style.backgroundColor= "#00a896";
-    document.getElementById("paper").style.backgroundColor= "#00a896";
-    document.getElementById("scissors").style.backgroundColor= "#028090";}
+document.getElementById("rock").onclick = function() {playRound("rock");}
+document.getElementById("paper").onclick = function() {playRound("paper");}
+document.getElementById("scissors").onclick = function() {playRound("scissors");}
 
 function computerPlay() {
     const aiOptions = ['rock', 'paper', 'scissors'];
@@ -37,7 +23,14 @@ function playRound(playerSelection) {
     else if (playerSelection == "rock" && computerSelection == "scissors" || playerSelection == "paper" && computerSelection == "rock" || playerSelection == "scissors" && computerSelection == "paper") {
         document.getElementById("jsText").innerHTML = (`You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`);
     }
-    computerSelectionHighlight();
+    document.getElementById("rock").style.backgroundColor= "#00a896";
+    document.getElementById("paper").style.backgroundColor= "#00a896";
+    document.getElementById("scissors").style.backgroundColor= "#00a896";
+    document.getElementById(`${playerSelection}`).style.backgroundColor= "#028090";
+    document.getElementById("rockAI").style.backgroundColor= "#00a896";
+    document.getElementById("paperAI").style.backgroundColor= "#00a896";
+    document.getElementById("scissorsAI").style.backgroundColor= "#00a896";
+    document.getElementById(`${computerSelection}AI`).style.backgroundColor= "#028090";
     winnerCheck();
 }
 
@@ -52,24 +45,4 @@ function winnerCheck() {
     playerWins = 0;
     computerWins = 0;
     }
-}
-
-function computerSelectionHighlight() {
-    if (computerSelection == "rock") {
-    document.getElementById("rockAI").style.backgroundColor= "#028090";
-    document.getElementById("paperAI").style.backgroundColor= "#00a896";
-    document.getElementById("scissorsAI").style.backgroundColor= "#00a896";
-    }
-  
-    if (computerSelection == "paper") {
-    document.getElementById("rockAI").style.backgroundColor= "#00a896";
-    document.getElementById("paperAI").style.backgroundColor= "#028090";
-    document.getElementById("scissorsAI").style.backgroundColor= "#00a896";
-    }
-  
-    if (computerSelection == "scissors") {
-    document.getElementById("rockAI").style.backgroundColor= "#00a896";
-    document.getElementById("paperAI").style.backgroundColor= "#00a896";
-    document.getElementById("scissorsAI").style.backgroundColor= "#028090";
-    } 
 }
