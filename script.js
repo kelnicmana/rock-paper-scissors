@@ -58,14 +58,14 @@ function winnerCheck() {
   if (playerWins == 5) {
     document.getElementById(
       "jsText"
-    ).innerHTML = `You've won! Congratulations!`;
+    ).innerText = `You've won! Congratulations!`;
     playerWins = 0;
     computerWins = 0;
   }
   if (computerWins == 5) {
     document.getElementById(
       "jsText"
-    ).innerHTML = `You've lost. Please try again.`;
+    ).innerText = `You've lost. Please try again.`;
     playerWins = 0;
     computerWins = 0;
   }
