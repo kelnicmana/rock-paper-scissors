@@ -1,25 +1,23 @@
 let totalGames = 0;
 let playerWins = 0;
 let computerWins = 0;
+const options = ["rock", "paper", "scissors"];
 
-document
-  .getElementById("rock")
-  .addEventListener("click", () => playRound("rock"));
-document
-  .getElementById("paper")
-  .addEventListener("click", () => playRound("paper"));
-document
-  .getElementById("scissors")
-  .addEventListener("click", () => playRound("scissors"));
+const selections = document.querySelectorAll(".selections");
 
-function computerPlay() {
-  const aiOptions = ["rock", "paper", "scissors"];
-  let aiRand = Math.floor(Math.random() * aiOptions.length);
-  return aiOptions[aiRand];
+selections.forEach((selection) => {
+  selection.addEventListener("click", (e) => {
+    playRound(e.target.classList[0]);
+  });
+});
+
+function computerPlay(options) {
+  let aiRand = Math.floor(Math.random() * options.length);
+  return options[aiRand];
 }
 
 function playRound(playerSelection) {
-  computerSelection = computerPlay();
+  computerSelection = computerPlay(options);
   if (computerSelection == playerSelection) {
     document.getElementById(
       "jsText"
@@ -41,14 +39,19 @@ function playRound(playerSelection) {
       "jsText"
     ).innerHTML = `You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`;
   }
-  document.getElementById("rock").style.backgroundColor = "#00a896";
-  document.getElementById("paper").style.backgroundColor = "#00a896";
-  document.getElementById("scissors").style.backgroundColor = "#00a896";
-  document.getElementById(`${playerSelection}`).style.backgroundColor =
+
+  // sets all selection elements to reset their background color to default
+
+  selections.forEach((selection) => {
+    selection.style.backgroundColor = "#00a896";
+  });
+
+  // document.getElementById("rock").style.backgroundColor = "#00a896";
+  // document.getElementById("paper").style.backgroundColor = "#00a896";
+  // document.getElementById("scissors").style.backgroundColor = "#00a896";
+
+  document.querySelector(`.${playerSelection}`).style.backgroundColor =
     "#028090";
-  document.getElementById("rockAI").style.backgroundColor = "#00a896";
-  document.getElementById("paperAI").style.backgroundColor = "#00a896";
-  document.getElementById("scissorsAI").style.backgroundColor = "#00a896";
   document.getElementById(`${computerSelection}AI`).style.backgroundColor =
     "#028090";
   winnerCheck();
