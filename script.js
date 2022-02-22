@@ -1,8 +1,6 @@
-let totalGames = 0;
 let playerWins = 0;
 let computerWins = 0;
 const options = ["rock", "paper", "scissors"];
-
 const selections = document.querySelectorAll(".selections");
 
 selections.forEach((selection) => {
@@ -18,26 +16,22 @@ function computerPlay(options) {
 
 function playRound(playerSelection) {
   computerSelection = computerPlay(options);
-  if (computerSelection == playerSelection) {
+  let playerIndex = options.indexOf(playerSelection);
+  let aiIndex = options.indexOf(computerSelection);
+  let tally = playerIndex - aiIndex;
+
+  if (playerIndex == aiIndex) {
     document.getElementById(
       "jsText"
     ).innerHTML = `You tied.<hr>Wins: ${playerWins}<br>Losses: ${computerWins}`;
-  } else if (
-    (playerSelection == "rock" && computerSelection == "paper") ||
-    (playerSelection == "paper" && computerSelection == "scissors") ||
-    (playerSelection == "scissors" && computerSelection == "rock")
-  ) {
-    document.getElementById(
-      "jsText"
-    ).innerHTML = `You lose, ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`;
-  } else if (
-    (playerSelection == "rock" && computerSelection == "scissors") ||
-    (playerSelection == "paper" && computerSelection == "rock") ||
-    (playerSelection == "scissors" && computerSelection == "paper")
-  ) {
+  } else if (tally == 1 || tally == -2) {
     document.getElementById(
       "jsText"
     ).innerHTML = `You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`;
+  } else {
+    document.getElementById(
+      "jsText"
+    ).innerHTML = `You lose, ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`;
   }
 
   // sets all selection elements to reset their background color to default
@@ -45,10 +39,6 @@ function playRound(playerSelection) {
   selections.forEach((selection) => {
     selection.style.backgroundColor = "#00a896";
   });
-
-  // document.getElementById("rock").style.backgroundColor = "#00a896";
-  // document.getElementById("paper").style.backgroundColor = "#00a896";
-  // document.getElementById("scissors").style.backgroundColor = "#00a896";
 
   document.querySelector(`.${playerSelection}`).style.backgroundColor =
     "#028090";
