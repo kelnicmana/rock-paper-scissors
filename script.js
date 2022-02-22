@@ -15,23 +15,18 @@ function computerPlay(options) {
 }
 
 function playRound(playerSelection) {
+  let jsText = document.getElementById("jsText");
   computerSelection = computerPlay(options);
   let playerIndex = options.indexOf(playerSelection);
   let aiIndex = options.indexOf(computerSelection);
   let tally = playerIndex - aiIndex;
 
   if (playerIndex == aiIndex) {
-    document.getElementById(
-      "jsText"
-    ).innerHTML = `You tied.<hr>Wins: ${playerWins}<br>Losses: ${computerWins}`;
+    jsText.innerHTML = `You tied.<hr>Wins: ${playerWins}<br>Losses: ${computerWins}`;
   } else if (tally == 1 || tally == -2) {
-    document.getElementById(
-      "jsText"
-    ).innerHTML = `You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`;
+    jsText.innerHTML = `You win, ${playerSelection} beats ${computerSelection}.<hr>Wins: ${++playerWins}<br>Losses: ${computerWins}`;
   } else {
-    document.getElementById(
-      "jsText"
-    ).innerHTML = `You lose, ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`;
+    jsText.innerHTML = `You lose, ${computerSelection} beats ${playerSelection}.<hr>Wins: ${playerWins}<br>Losses: ${++computerWins}`;
   }
 
   // sets all selection elements to reset their background color to default
@@ -44,21 +39,17 @@ function playRound(playerSelection) {
     "#028090";
   document.getElementById(`${computerSelection}AI`).style.backgroundColor =
     "#028090";
-  winnerCheck();
+  winnerCheck(jsText);
 }
 
-function winnerCheck() {
+function winnerCheck(jsText) {
   if (playerWins == 5) {
-    document.getElementById(
-      "jsText"
-    ).innerText = `You've won! Congratulations!`;
+    jsText.innerText = `You've won! Congratulations!`;
     playerWins = 0;
     computerWins = 0;
   }
   if (computerWins == 5) {
-    document.getElementById(
-      "jsText"
-    ).innerText = `You've lost. Please try again.`;
+    jsText.innerText = `You've lost. Please try again.`;
     playerWins = 0;
     computerWins = 0;
   }
