@@ -48,14 +48,14 @@ function playRound(playerSelection) {
 
 // checks if either the player or AI has reached 5 total wins
 function winnerCheck(jsText) {
-  if (playerWins == 5 || computerWins == 5) {
-    playerWins = 0;
-    computerWins = 0;
-  }
   if (playerWins == 5) {
     jsText.innerText = `You've won! Congratulations!`;
   }
   if (computerWins == 5) {
     jsText.innerText = `You've lost. Please try again.`;
+  }
+  if (playerWins == 5 || computerWins == 5) {
+    playerWins = 0;
+    computerWins = 0;
   }
 }
